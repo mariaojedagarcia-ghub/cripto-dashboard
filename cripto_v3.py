@@ -38,7 +38,7 @@ st.set_page_config(
     layout="wide",
 )
 
-INTERVALO_SEGUNDOS = 60
+INTERVALO_SEGUNDOS = 120
 
 # =============================================
 # API
