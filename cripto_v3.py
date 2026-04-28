@@ -28,6 +28,8 @@ import plotly.express as px
 import pandas as pd
 from datetime import datetime
 import time
+import pytz
+
 
 # =============================================
 # CONFIGURACIÓN
@@ -38,7 +40,7 @@ st.set_page_config(
     layout="wide",
 )
 
-INTERVALO_SEGUNDOS = 120
+INTERVALO_SEGUNDOS = 60
 
 # =============================================
 # API
@@ -62,7 +64,8 @@ def obtener_precios():
                 "precio": raw[clave]["eur"],
                 "cambio": raw[clave]["eur_24h_change"],
             }
-        resultado["timestamp"] = datetime.now().strftime("%H:%M:%S")
+        zona_espana = pytz.timezone('Europe/Madrid')
+        resultado["timestamp"] = datetime.now(zona_espana).strftime("%H:%M:%S")
         return resultado
     except Exception as e:
         return None
